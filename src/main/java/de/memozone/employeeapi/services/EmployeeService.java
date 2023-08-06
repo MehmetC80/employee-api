@@ -3,15 +3,16 @@ package de.memozone.employeeapi.services;
 import de.memozone.employeeapi.model.Employee;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface EmployeeService {
     Employee createEmployee(Employee employee);
 
     List<Employee> getAllEmployees();
 
-    boolean deleteEmployee(Long id);
+    boolean deleteEmployee(UUID id);
 
-    Employee getEmployeeById(Long id);
+    Employee getEmployeeById(UUID id);
 
-    Employee updateEmployee(Long id, Employee employee);
+    Employee updateEmployee(UUID id, Employee employee);
 }

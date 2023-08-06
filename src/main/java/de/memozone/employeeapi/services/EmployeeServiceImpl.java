@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,7 +53,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public boolean deleteEmployee(Long id) {
+    public boolean deleteEmployee(UUID id) {
 
         EmployeeEntity employeeEntity = employeeRepository.findById(id).get();
         employeeRepository.delete(employeeEntity);
@@ -61,7 +62,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee getEmployeeById(Long id) {
+    public Employee getEmployeeById(UUID id) {
 
         EmployeeEntity employeeEntity = employeeRepository.findById(id).get();
         Employee employee = Employee.builder()
@@ -75,9 +76,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee updateEmployee(Long id, Employee employee) {
+    public Employee updateEmployee(UUID id, Employee employee) {
         EmployeeEntity employeeEntity = employeeRepository.findById(id).get();
-        employeeEntity.setFirstname(employee.getEmail());
+        employeeEntity.setFirstname(employee.getFirstname());
         employeeEntity.setLastname(employee.getLastname());
         employeeEntity.setEmail(employee.getEmail());
         employeeRepository.save(employeeEntity);

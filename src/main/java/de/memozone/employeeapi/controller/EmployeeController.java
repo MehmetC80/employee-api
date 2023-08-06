@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -35,7 +36,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/employees/{id}")
-    public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id) {
+    public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable UUID id) {
 
         boolean deleted = false;
         deleted = employeeService.deleteEmployee(id);
@@ -45,18 +46,16 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable UUID id) {
         Employee employee = null;
         employee = employeeService.getEmployeeById(id);
         return ResponseEntity.ok(employee);
     }
 
-    @PutMapping("/employee/{id}")
+    @PutMapping("/employees/{id}")
     public ResponseEntity<Employee> updateEmployee(
-            @PathVariable Long id,
+            @PathVariable UUID id,
             @RequestBody Employee employee) {
-
-
         Employee employee2 = employeeService.updateEmployee(id, employee);
         return ResponseEntity.ok(employee2);
     }
